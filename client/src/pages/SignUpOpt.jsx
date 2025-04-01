@@ -13,7 +13,7 @@ export default function SignUpOpt() {
           disabled={loading}
           className='bg-slate-700 w-full text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
-          {loading ? 'Loading...' : 'Register As Student'}
+          {loading ? 'Loading...' : 'Register As Copper'}
         </button>
             </Link>
             

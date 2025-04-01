@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,11 +9,17 @@ import {
 } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth';
 
+
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(signInFailure(null)); // Reset error and loading on mount
+  }, [dispatch]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -30,12 +37,23 @@ export default function SignIn() {
         },
         body: JSON.stringify(formData),
       });
+
+      if (!res.ok) {  // Handle HTTP errors properly
+        const errorData = await res.json();
+        dispatch(signInFailure(errorData.message || 'Sign in failed'));
+        return;
+      }
+
       const data = await res.json();
       console.log(data);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
       }
+
+      console.log('Response status:', res.status);
+      console.log('Response data:', data);
+
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {

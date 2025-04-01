@@ -86,7 +86,7 @@ export default function SignUpStudent() {
   return (
     <div className='p-3 max-w-lg mx-auto'>
         <div>
-         <h1 className='text-3xl text-center font-semibold my-7'>Register As Student</h1>
+         <h1 className='text-3xl text-center font-semibold my-7'>Register As Nysc Copper</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           type='text'
