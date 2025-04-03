@@ -25,17 +25,19 @@ mongoose
   const __dirname = path.resolve();
 
 
-  app.use(cors({
-    origin: ["http://localhost:5173", "https://nysc-accommodation.vercel.app"], 
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-  }));
-  
+ 
+
 const app = express();
 
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.use(cors({
+  origin: ["http://localhost:5173", "https://nysc-accommodation.vercel.app"], 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000!');
