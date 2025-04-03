@@ -60,7 +60,7 @@ export default function StudentPreferenceForm({setTrigger}) {
     e.preventDefault();
     try {
       setLoading(true);
-    const res = await fetch(`/api/preference/create/${currentUser._id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/preference/create/${currentUser._id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

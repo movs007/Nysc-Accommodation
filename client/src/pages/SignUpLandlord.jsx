@@ -17,7 +17,7 @@ export default function SignUpLandlord() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/auth/signup/landlord', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup/landlord`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

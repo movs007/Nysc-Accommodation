@@ -58,7 +58,7 @@ export default function SignUpStudent() {
         university: selectedUniversity.value // Add selected university to formData
       };
       console.log(formDataWithStateAndUniversity)
-      const res = await fetch('/api/auth/signup/student', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup/student`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ const CommentList = ({ propertyId, reloadComments }) => {
     const fetchComments = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/comment/get/${propertyId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/comment/get/${propertyId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch comments');
         }

@@ -14,7 +14,7 @@ export default function StudentPreferenceFormUpdate({setTrigger}) {
 
     useEffect(() => {
         const fetchPreference = async () => {
-            const res = await fetch(`/api/preference/get/${currentUser._id}`)
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/preference/get/${currentUser._id}`)
             const preference = await res.json();
             setPreference(preference)
         }
