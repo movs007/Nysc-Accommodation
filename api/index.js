@@ -9,6 +9,7 @@ import preferenceRouter from './routes/preference.route.js';
 import recommendationRouter from './routes/recommendation.route.js'
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors';
 // import { spawn } from 'child_process';
 dotenv.config();
 
@@ -23,6 +24,13 @@ mongoose
 
   const __dirname = path.resolve();
 
+
+  app.use(cors({
+    origin: ["http://localhost:5173", "https://nysc-accommodation.vercel.app"], 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  }));
+  
 const app = express();
 
 app.use(express.json());
