@@ -4,7 +4,7 @@ import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
 export const signupasStudent = async (req, res, next) => {
-  const { username, email, password, state, university, regno } = req.body;
+  const { username, email, password, state, lga, callupno,isColiving } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({
      username, 
