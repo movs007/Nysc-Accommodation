@@ -19,6 +19,10 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+
+
+
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -31,6 +35,7 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   // firebase storage
   // allow read;
@@ -131,7 +136,11 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/listings/${currentUser._id}`,{
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      });
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);

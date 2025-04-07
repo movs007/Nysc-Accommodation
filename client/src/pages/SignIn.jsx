@@ -51,6 +51,9 @@ export default function SignIn() {
         return;
       }
 
+       // 🔐 Store token in localStorage
+      localStorage.setItem('token', data.token);
+
       console.log('Response status:', res.status);
       console.log('Response data:', data);
 
