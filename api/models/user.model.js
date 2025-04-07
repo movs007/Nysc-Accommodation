@@ -37,13 +37,19 @@ const userSchema = new mongoose.Schema(
         return this.userType === 'student'; // Required only for student users
       },
     },
-    university: {
+    lga: {
       type: String,
       required: function() {
         return this.userType === 'student'; // Required only for student users
       },
     },
-    regno: {
+    callUpNo: {
+      type: String,
+      required: function() {
+        return this.userType === 'student'; // Required only for student users
+      },
+    },
+    isColiving: {
       type: String,
       required: function() {
         return this.userType === 'student'; // Required only for student users

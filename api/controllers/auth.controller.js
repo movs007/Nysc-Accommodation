@@ -12,8 +12,9 @@ export const signupasStudent = async (req, res, next) => {
      password: hashedPassword,
      userType: 'student', // Set userType to 'student'
      state,
-     university,
-     regno,
+     lga,
+     callupno,
+     isColiving,
      });
   try {
     const validUser = await User.findOne({ email });

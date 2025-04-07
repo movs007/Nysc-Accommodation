@@ -8,7 +8,7 @@ import OAuth from '../components/OAuth';
 // import StudentPreferenceForm from '../components/StudentPreferenceForm'
 
 export default function SignUpStudent() {
-  const formArray = [1, 2];
+  //const formArray = [1, 2];
   const [formData, setFormData] = useState({});
   // const [formNo, setFormNo] = useState(formArray[0])
   const [selectedState, setSelectedState] = useState(null);
@@ -31,11 +31,19 @@ export default function SignUpStudent() {
     control: (styles) => ({...styles, padding:"5px", borderRadius:"8px", borderWidth:"1px"})
   };
 
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.id]: e.target.value,
+  //   });
+  // };
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+    const { name, value, id } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name || id]: value,
+    }));
   };
 
   // const next = () => {
@@ -55,7 +63,7 @@ export default function SignUpStudent() {
       const formDataWithStateAndUniversity = {
         ...formData,
         state: selectedState.value, // Add selected state to formData
-        university: selectedUniversity.value // Add selected university to formData
+        lga: selectedUniversity.value // Add selected university to formData
       };
       console.log(formDataWithStateAndUniversity)
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup/student`, {
@@ -124,19 +132,43 @@ export default function SignUpStudent() {
           <Select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            options={selectedState.university.map((university) => ({ value: university, label: university }))}
+            options={selectedState.lgas.map((lgas) => ({ value: lgas, label: lgas }))}
             styles={formStyles}
-            placeholder={"Select University..."}
+            placeholder={"Select L.G.A..."}
           />
           <input
           type='text'
-          placeholder='Reg No'
+          placeholder='CALL UP No'
           className='border w-full p-3 mt-3 rounded-lg'
-          id='regno'
+          id='callupno'
           onChange={handleChange}
         />
         </div>
       )}
+
+      <label className="block mb-2 font-semibold">Are you interested in co-living?</label>
+      <div className="flex gap-4 mb-4">
+        <label className="flex items-center gap-2">
+          <input
+            type="radio"
+            name="isColiving"
+            value="yes"
+            checked={formData.isColiving === 'yes'}
+            onChange={handleChange}
+          />
+          Yes
+        </label>
+        <label className="flex items-center gap-2">
+          <input
+            type="radio"
+            name="isColiving"
+            value="no"
+            checked={formData.isColiving === 'no'}
+            onChange={handleChange}
+          />
+          No
+        </label>
+      </div>
 
         <button
           disabled={loading}
