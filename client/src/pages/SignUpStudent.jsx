@@ -68,6 +68,7 @@ export default function SignUpStudent() {
       console.log(formDataWithStateAndUniversity)
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup/student`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -140,7 +141,7 @@ export default function SignUpStudent() {
           type='text'
           placeholder='CALL UP No'
           className='border w-full p-3 mt-3 rounded-lg'
-          id='callupno'
+          id='callUpNo'
           onChange={handleChange}
         />
         </div>

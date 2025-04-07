@@ -113,15 +113,20 @@ export default function Listing() {
               <FaMapMarkerAlt className='text-green-700' />
               {listing.location}
             </p>
-            <div className='flex gap-4'>
+            {/* <div className='flex gap-4'>
               <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                 {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
               </p>
               {listing.offer && (
-                <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
+                <p className='bg-green-100 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                   ${+listing.regularPrice - +listing.discountPrice} OFF
                 </p>
               )}
+            </div> */}
+            <div>
+              <button className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
+                video preview
+              </button>
             </div>
             <p className='text-slate-800'>
               <span className='font-semibold text-black'>Description - </span>
